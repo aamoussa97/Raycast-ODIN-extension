@@ -8,7 +8,7 @@
   
 <h1 align="center">ODIN</h1>
 
-Raycast extension to retrieve emergency alarms from Online Dataregistrerings- og INdberetningssystem (ODIN), a system by The Danish Emergency Management Agency (DEMA), through 'www.odin.dk/112puls/'.
+Raycast extension to retrieve emergency alarms from [Online Dataregistrerings- og INdberetningssystem (ODIN)](https://www.brs.dk/da/redningsberedskab-myndighed/viden2-data-og-dokumentation/indberetninger-odin/), a system by The Danish Emergency Management Agency (DEMA), through www.odin.dk/112puls/.
 <p>
     <a href="https://www.raycast.com/aamoussa97/odin">
       <img src="https://img.shields.io/badge/Raycast-store-red.svg"
