@@ -27,8 +27,7 @@ Raycast extension to retrieve emergency alarms from [Online Dataregistrerings- o
   
   <img
   src="odin/assets/screenshot-allmodes.png"
-  alt="Alt text"
-  title="Optional title">
+  alt="Screenshot of Raycast-ODIN-extension in both light- and darkmode">
 </div>
   
 ## Features
