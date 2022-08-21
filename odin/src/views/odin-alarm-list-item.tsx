@@ -1,6 +1,6 @@
 import {List} from "@raycast/api";
-import {OdinAlarmItemProps} from "./models/OdinAlarmItemProps";
-import {ODIN_HTML_ALARM_DATE_FORMAT} from "./constants/OdinConstants";
+import {OdinAlarmItemProps} from "../models/OdinAlarmItemProps";
+import {ODIN_HTML_ALARM_DATE_FORMAT} from "../constants/OdinConstants";
 import moment from "moment";
 
 export function OdinAlarmListItem({odinAlarmModel}: OdinAlarmItemProps) {

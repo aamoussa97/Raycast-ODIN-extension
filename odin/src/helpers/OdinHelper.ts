@@ -69,7 +69,7 @@ export default class OdinHelper {
         return crypto.randomUUID();
     }
 
-    didFindAlarms = (array: [OdinAlarm] | null): boolean => {
-        return array && array.length !== 0
+    didFindAlarms = (array: [OdinAlarm] | null): null | boolean => {
+        return (array && array?.length > 0);
     }
 }

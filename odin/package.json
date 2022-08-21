@@ -12,7 +12,7 @@
   "commands": [
     {
       "name": "odin-alarms",
-      "title": "Latest emergency alarms",
+      "title": "Latest ODIN alarms",
       "subtitle": "ODIN",
       "description": "Retrieves the latest 20 emergency alarms from ODIN, sorted based on time received.",
       "mode": "view"
