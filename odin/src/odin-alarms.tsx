@@ -1,47 +1,62 @@
-import { useEffect, useState } from "react";
-import { List } from "@raycast/api";
+import {List} from "@raycast/api";
+import {useEffect, useState} from "react";
 import OdinHelper from "./helpers/OdinHelper";
 import {OdinAlarm} from "./models/OdinAlarm";
 import {OdinAlarmListItem} from "./odin-alarm-list-item";
-import {ODIN_SOURCE_INDICATION} from "./constants/OdinConstants";
-import * as crypto from "crypto";
+import {
+    ODIN_SOURCE_INDICATION,
+    ODIN_STRINGS_NO_ALARMS_FOUND,
+    ODIN_STRINGS_SEARCH_PLACEHOLDER
+} from "./constants/OdinConstants";
 
 export default function OdinAlarms() {
     const odinHelper = new OdinHelper();
-    const [state, setState] = useState<{odinAlarmsModel: null | [OdinAlarm], lastUpdated: string}>({
+
+    const [state, setState] = useState<{
+        odinAlarmsModel: null | [OdinAlarm],
+        lastUpdated: null | string,
+        isLoading: boolean
+    }>({
         odinAlarmsModel: null,
-        lastUpdated: ""
+        lastUpdated: null,
+        isLoading: true
     });
-    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const [result] = await Promise.all([
-                    odinHelper.retrieveAlarmsFromOdinPuls()
-                ]);
+                const retrievedResult = await odinHelper.retrieveAlarmsFromOdinPuls();
 
-                setState(prevState => ({...prevState, odinAlarmsModel: result[0], lastUpdated: result[1]}))
-                setIsLoading(false)
+                setState(prevState => {
+                    let [odinAlarmsModel, lastUpdated] = retrievedResult;
+
+                    return {
+                        ...prevState,
+                        odinAlarmsModel: odinAlarmsModel,
+                        lastUpdated: lastUpdated,
+                        isLoading: false
+                    };
+                })
             } catch (error: unknown) {
                 console.log(error);
             }
         }
 
         fetchData();
-    }, [state, isLoading]);
+    }, [state]);
 
     return <>
         <List
-            isLoading={isLoading}
-            searchBarPlaceholder="Filter by station, accident description or time called in."
+            isLoading={state.isLoading}
+            searchBarPlaceholder={ODIN_STRINGS_SEARCH_PLACEHOLDER}
             navigationTitle={`${ODIN_SOURCE_INDICATION} ${state.lastUpdated}`}
         >
-            {!odinHelper.hasLength(state.odinAlarmsModel) ? (
-                <List.EmptyView title="No alarms found." />
+            {!odinHelper.didFindAlarms(state.odinAlarmsModel) ? (
+                <List.EmptyView title={ODIN_STRINGS_NO_ALARMS_FOUND}/>
             ) : (
                 state.odinAlarmsModel?.map((odinAlarm) => (
-                    <OdinAlarmListItem key={crypto.randomUUID()} odinAlarmModel={odinAlarm}/>
+                    <OdinAlarmListItem key={odinHelper.generateRandomUUID()}
+                                       odinAlarmModel={odinAlarm}/>
                 ))
             )}
         </List>

@@ -1,7 +1,13 @@
 import axios from "axios";
 import * as Cheerio from "cheerio";
-import {ODIN_HTML_ALARM_UPDATED_AT_REGEX, ODIN_HTML_ALARMS_TABLE_ID, ODIN_SOURCE_URL} from "../constants/OdinConstants";
-import { OdinAlarm } from "../models/OdinAlarm";
+import * as crypto from "crypto";
+import {
+    ODIN_HTML_ALARM_UPDATED_AT_REGEX,
+    ODIN_HTML_ALARMS_TABLE_BODY_CLASS,
+    ODIN_HTML_ALARMS_TABLE_ID,
+    ODIN_SOURCE_URL
+} from "../constants/OdinConstants";
+import {OdinAlarm} from "../models/OdinAlarm";
 
 export default class OdinHelper {
     retrieveAlarmsFromOdinPuls = async () => {
@@ -19,22 +25,22 @@ export default class OdinHelper {
         }
     }
 
-    parseOdinAlarms = async(htmlDom: string) => {
+    parseOdinAlarms = async (html: string): Promise<[OdinAlarm[], string]> => {
         var alarms: OdinAlarm[] = [];
 
-        const $ = Cheerio.load(htmlDom);
+        const $ = Cheerio.load(html);
 
         const lastUpdated = $("#CurrentTime").last().text();
         const matchedRegexLastUpdated = '- ' + lastUpdated.match(ODIN_HTML_ALARM_UPDATED_AT_REGEX);
 
         const alarmsTable = $(`#${ODIN_HTML_ALARMS_TABLE_ID}`).first();
-        const alarmsTableBody = alarmsTable.find("tbody");
+        const alarmsTableBody = alarmsTable.find(ODIN_HTML_ALARMS_TABLE_BODY_CLASS);
 
         alarmsTableBody.children().each((i, tableRowElement) => {
             const tableRowElementChildren = $(tableRowElement).first().children()
             const tableRowElementChildrenFilter = $(tableRowElement).first().find('th');
 
-            if (tableRowElementChildrenFilter.length === 0 || tableRowElementChildrenFilter === null) {
+            if (tableRowElementChildrenFilter.length === 0) {
                 const beredskabElement = $(tableRowElementChildren)[0]
                 const stationElement = $(tableRowElementChildren)[1]
                 const alarmModtagetELement = $(tableRowElementChildren)[2]
@@ -59,7 +65,11 @@ export default class OdinHelper {
         return [alarms, matchedRegexLastUpdated];
     }
 
-    hasLength = (arr: any[]): boolean => {
-        return arr && arr.length !== 0
+    generateRandomUUID = (): string => {
+        return crypto.randomUUID();
+    }
+
+    didFindAlarms = (array: [OdinAlarm] | null): boolean => {
+        return array && array.length !== 0
     }
 }
