@@ -1,6 +1,6 @@
 <div align="center">
 <img
-  src="odin/assets/command-icon.png"
+  src="assets/command-icon.png"
   alt="Raycast-ODIN-extension icon"
   style="text-align:center"
   height=150
@@ -26,8 +26,8 @@ Raycast extension to retrieve emergency alarms from [Online Dataregistrerings- o
   </p>
   
   <img
-  src="odin/assets/screenshot-allmodes.png"
-  alt="Alt text"
+  src="assets/screenshot-allmodes.png"
+  alt="Screenshot of Raycast-ODIN-extension in both light- and darkmode"
   title="Optional title">
 </div>
   
