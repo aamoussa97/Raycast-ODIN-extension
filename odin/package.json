@@ -1,0 +1,44 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "odin",
+  "title": "ODIN",
+  "description": "Retrieves emergency alarms from Online Dataregistrerings- og INdberetningssystem (ODIN), a system by The Danish Emergency Management Agency (DEMA).",
+  "icon": "command-icon.png",
+  "author": "aamoussa97",
+  "categories": [
+    "News"
+  ],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "odin-alarms",
+      "title": "ODIN Alarms",
+      "subtitle": "Latest 20 emergency alarms",
+      "description": "Retrieves the latest 20 emergency alarms from ODIN.",
+      "mode": "view"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.38.3",
+    "@types/cheerio": "^0.22.31",
+    "axios": "^0.27.2",
+    "moment": "^2.29.4",
+    "playwright": "^1.25.0",
+    "puppeteer": "^16.1.1"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^5.4.6",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "ray publish"
+  }
+}
