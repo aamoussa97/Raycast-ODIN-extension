@@ -22,12 +22,9 @@
     "@raycast/api": "^1.38.3",
     "@types/cheerio": "^0.22.31",
     "axios": "^0.27.2",
-    "moment": "^2.29.4",
-    "playwright": "^1.25.0",
-    "puppeteer": "^16.1.1"
+    "moment": "^2.29.4"
   },
   "devDependencies": {
-    "@types/puppeteer": "^5.4.6",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
