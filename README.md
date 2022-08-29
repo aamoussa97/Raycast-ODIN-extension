@@ -25,11 +25,15 @@ Raycast extension to retrieve emergency alarms from [Online Dataregistrerings- o
   </a>
   </p>
   
+  <a title="Install ODIN Raycast Extension" href="https://www.raycast.com/aamoussa97/odin#install">
+  <img height="64" style="height: 64px" src="https://assets.raycast.com/aamoussa97/odin/install_button@2x.png">
+</a> 
+  
   <img
   src="odin/assets/screenshot-allmodes.png"
   alt="Screenshot of Raycast-ODIN-extension in both light- and darkmode">
-</div>
-  
+</div>     
+
 ## Features
 - See latest 20 emergencies reported to ODIN, with responsible preparedness unit, location, emergency category and timestamp/relative time for report of accident.
   
